@@ -73,7 +73,9 @@ namespace Options
                 }
             }
 
-            tasks.Add(new TaskClass(name, description, type, date));
+
+            TaskClass t = new TaskClass(name, description, type, date);
+            tasks.Add(t);
             if (type == "theory")
             {
                 Console.Write("Enter name of book: ");
@@ -85,7 +87,8 @@ namespace Options
                 Console.Write("Enter number of words: ");
                 int NumberOfWords = Convert.ToInt32(Console.ReadLine());
 
-                TheoryClass th = new TheoryClass(); 
+                TheoryClass th = new TheoryClass();
+                th.ID = t.ID;
                 th.Book = NameOfBook;
                 th.NumberOfWords = NumberOfWords;
                 th.Page = NumberOfPage;

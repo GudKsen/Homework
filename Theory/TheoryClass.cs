@@ -16,10 +16,9 @@ namespace Theory
         private int page { get; set; }
         private int number_of_words { get; set; }
 
-        void TheoryClassC(string name, string book, int page, int number_of_words)
+        void TheoryClassC(int id, string name, string book, int page, int number_of_words)
         {
-            Random rnd = new Random();
-            ID = rnd.Next();
+            ID = id;
             Name = name;
             this.book = book;
             this.page = page;
