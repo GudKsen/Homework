@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Options;
+using Theory;
 
 namespace HomeworkConsolePrint
 {
@@ -15,7 +16,7 @@ namespace HomeworkConsolePrint
             int option = 20;
             int counter_of_adding_el = 0;
             List<TaskClass> tasks = new List<TaskClass>();
-            
+            List<TheoryClass> theoriesTasks = new List<TheoryClass>();
 
             while (option != 0)
             {
@@ -48,7 +49,7 @@ namespace HomeworkConsolePrint
                     case 1:
                         if (counter_of_adding_el < N)
                         {
-                            Adding.AddingOption(tasks);
+                            Adding.AddingOption(tasks, theoriesTasks);
                             counter_of_adding_el++;
                         }
                         else
@@ -58,7 +59,7 @@ namespace HomeworkConsolePrint
                         break;
 
                     case 2:
-                        Showing.ShowingOption(tasks);
+                        Showing.ShowingOption(tasks, theoriesTasks);
                         break;
 
                     case 3:

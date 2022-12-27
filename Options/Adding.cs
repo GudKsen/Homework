@@ -11,7 +11,7 @@ namespace Options
 {
     public class Adding
     {
-        public static void AddingOption(List<TaskClass> tasks)
+        public static void AddingOption(List<TaskClass> tasks, List<TheoryClass> theoriesTasks)
         {
             bool IsValid = false;
 
@@ -35,7 +35,7 @@ namespace Options
 
             while (IsValid != true)
             {
-                IsValid = Valid.IsValidString(description);
+                IsValid = Valid.IsValidText(description);
                 if (IsValid != true)
                 {
                     Console.Write("Enter description: ");
@@ -80,12 +80,45 @@ namespace Options
             {
                 Console.Write("Enter name of book: ");
                 string NameOfBook = Console.ReadLine();
+                IsValid = false;
+
+                while (IsValid != true)
+                {
+                    IsValid = Valid.IsValidString(NameOfBook);
+                    if (IsValid != true)
+                    {
+                        Console.Write("Enter name of book: ");
+                        NameOfBook = Console.ReadLine();
+                    }
+                }
 
                 Console.Write("Enter number of page: ");
-                int NumberOfPage = Convert.ToInt32(Console.ReadLine());
+                int NumberOfPage;
+                string number = Console.ReadLine();
+
+                while (!int.TryParse(number, out NumberOfPage))
+                {
+                    Console.WriteLine("Invalid input: invalid number");
+                    if (!int.TryParse(number, out _))
+                    {
+                        Console.Write("Enter number of page: ");
+                        number = Console.ReadLine();
+                    }
+                }
 
                 Console.Write("Enter number of words: ");
-                int NumberOfWords = Convert.ToInt32(Console.ReadLine());
+                int NumberOfWords;
+                number = Console.ReadLine();
+
+                while (!int.TryParse(number, out NumberOfWords))
+                {
+                    Console.WriteLine("Invalid input: invalid number");
+                    if (!int.TryParse(number, out _))
+                    {
+                        Console.Write("Enter number of words: ");
+                        number = Console.ReadLine();
+                    }
+                }
 
                 TheoryClass th = new TheoryClass();
                 th.ID = t.ID;
@@ -93,6 +126,7 @@ namespace Options
                 th.NumberOfWords = NumberOfWords;
                 th.Page = NumberOfPage;
                 th.Name = name;
+                theoriesTasks.Add(th);
             }
         }
     }
