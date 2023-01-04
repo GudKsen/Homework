@@ -11,7 +11,8 @@ namespace HomeworkConsolePrint
             int N = Convert.ToInt32(Console.ReadLine());
             if (N > 0)
             {
-                Menu.menu(N);
+                Menu m = new Menu();
+                m.menuLoop(N);
             }
             else
             {

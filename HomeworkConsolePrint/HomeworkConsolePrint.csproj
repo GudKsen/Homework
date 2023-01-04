@@ -9,8 +9,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\ClassLibraryTask\ClassLibraryTask.csproj" />
-    <ProjectReference Include="..\Options\Options.csproj" />
-    <ProjectReference Include="..\Theory\Theory.csproj" />
     <ProjectReference Include="..\UnitTestProjectHomework\UnitTestProjectHomework.csproj" />
   </ItemGroup>
 

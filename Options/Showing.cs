@@ -10,16 +10,6 @@ namespace Options
 {
     public class Showing
     {
-        public static void ShowingOption(List<TaskClass> tasks, List<TheoryClass> theoriesTasks) {
-            for (int i = 0; i < tasks.Count; i++)
-            {
-                Console.WriteLine(tasks[i]);
-                if (tasks[i].type == TypeTask.Theory)
-                {
-                    Console.Write("\t");
-                    Console.WriteLine(theoriesTasks.Find(x => x.ID == tasks[i].ID));
-                }
-            }
-        }
+        
     }
 }

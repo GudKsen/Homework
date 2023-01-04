@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace ClassLibraryTask
 {
-    public class TaskClass
+    public class TaskClass : IComparable<TaskClass>
     {
         private int id;
         public int ID { get => id; set => id = value; }
@@ -29,6 +29,18 @@ namespace ClassLibraryTask
         }
 
         private DateTime Deadline;
+
+        public delegate void MyDelegate(string msg); // declare a delegate
+        public void checkDate() {
+            
+            DateTime today = DateTime.Today;
+            if (today > Deadline)
+            {
+                MyDelegate del = (string msg) => Console.WriteLine(msg);
+                del("Vse, zapiznyvsya");
+            }
+        }
+
 
         public TaskClass() { }
         public TaskClass(string namet, string description, string type, DateTime deadline)
@@ -91,8 +103,13 @@ namespace ClassLibraryTask
         public double GetDayToDeadline()
         {
             DateTime today = DateTime.Today;
-            var daysLeft = Deadline - today;
+           // var daysLeft = Deadline - today;
             return (Deadline - today).TotalDays;
+        }
+
+        public int CompareTo(TaskClass other)
+        {
+            return name.CompareTo(other.name);
         }
 
         public string GetDaysLeft

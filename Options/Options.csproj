@@ -53,10 +53,6 @@
       <Project>{c516df49-0c70-4331-a921-0da9571e5d38}</Project>
       <Name>ClassLibraryTask</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Theory\Theory.csproj">
-      <Project>{30d029b1-3261-4186-b40d-848e2056fc68}</Project>
-      <Name>Theory</Name>
-    </ProjectReference>
     <ProjectReference Include="..\ValidationData\ValidationData.csproj">
       <Project>{a74f1c9f-338a-4aa6-a342-c5f8de1854ce}</Project>
       <Name>ValidationData</Name>
