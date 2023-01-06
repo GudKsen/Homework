@@ -11,6 +11,8 @@ namespace HomeworkConsolePrint
     public class Menu
     {
         MenuData m = new MenuData();
+        MenuAdditionalTasks mat = new MenuAdditionalTasks();
+
         private int counter_of_adding_el = 0;
         internal void menuLoop(int N)
         {
@@ -91,7 +93,7 @@ namespace HomeworkConsolePrint
                     break;
 
                 case 8:
-
+                    menu_additional_tasks();
                     break;
 
                 case 0:
@@ -110,7 +112,8 @@ namespace HomeworkConsolePrint
             Console.WriteLine("1 - add laboratory work\n" +
                 "2 - delete laboratory work\n" +
                 "3 - find laboratory work\n" +
-                "4 - check if you have passed the task" +
+                "4 - check if you have passed the task\n" +
+                "5 - show works\n" +
                 "click any key to exit\n");
 
             string? choice = Console.ReadLine();
@@ -120,7 +123,24 @@ namespace HomeworkConsolePrint
                 switch(choice)
                 {
                     case "1":
+                        mat.add_l();
+                        break;
 
+                    case "2":
+                        break;
+
+                    case "3":
+                        break;
+
+                    case "4":
+                        mat.check_mark_l();
+                        break;
+
+                    case "5":
+                        mat.show();
+                        break;
+
+                    default:
                         break;
                 }
             }

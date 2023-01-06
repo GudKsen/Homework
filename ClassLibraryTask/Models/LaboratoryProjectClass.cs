@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 
 namespace ClassLibraryTask
 {
@@ -53,6 +54,11 @@ namespace ClassLibraryTask
         public override void GetResult()
         {
             Console.WriteLine($"You get {Current_mark_for_task} from {Max_mark_for_task} for laboratory work");
+        }
+
+        public override string ToString()
+        {
+            return "ID: " + ID + "\n";
         }
     }
 }

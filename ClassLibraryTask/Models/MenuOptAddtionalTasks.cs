@@ -8,7 +8,9 @@ namespace ClassLibraryTask.Models
 {
     public class MenuOptAddtionalTasks
     {
-        ListOfAddTask<LaboratoryProjectClass> tasks;
+        private ListOfAddTask<LaboratoryProjectClass> tasks = new ListOfAddTask<LaboratoryProjectClass>();
+        //public ListOfAddTask<LaboratoryProjectClass> Tasks { get { return tasks; } }
+
         public void add(int max_mark)
         {
             tasks.Add(new LaboratoryProjectClass(max_mark));
@@ -22,5 +24,14 @@ namespace ClassLibraryTask.Models
                 t.printActionDel(mark);
             }
         }
+
+        public void show()
+        {
+            for (int i = 0; i < tasks.Addition_tasks.Count; i++)
+            {
+                Console.WriteLine(tasks.Addition_tasks[i]);
+            }
+        }
+       
     }
 }

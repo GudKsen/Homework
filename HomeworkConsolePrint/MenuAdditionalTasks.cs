@@ -28,5 +28,10 @@ namespace HomeworkConsolePrint
 
             t.check(id, mark);
         }
+
+        public void show()
+        {
+            t.show();
+        }
     }
 }
