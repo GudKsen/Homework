@@ -43,16 +43,18 @@
   <ItemGroup>
     <Compile Include="CustomEventArgs.cs" />
     <Compile Include="EnumTask.cs" />
-    <Compile Include="LaboratoryProjectClass.cs" />
-    <Compile Include="ListOfAddTask.cs" />
-    <Compile Include="MenuOptions.cs" />
-    <Compile Include="DodTask.cs" />
-    <Compile Include="TaskClass.cs" />
+    <Compile Include="Lists\IRepository.cs" />
+    <Compile Include="Models\LaboratoryProjectClass.cs" />
+    <Compile Include="Lists\ListOfAddTask.cs" />
+    <Compile Include="Models\MenuOptAddtionalTasks.cs" />
+    <Compile Include="Models\MenuOptions.cs" />
+    <Compile Include="Models\DodTask.cs" />
+    <Compile Include="Models\TaskClass.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="TasksClass.cs" />
-    <Compile Include="TheoryClass.cs" />
-    <Compile Include="Valid.cs" />
-    <Compile Include="СompetitionClass.cs" />
+    <Compile Include="Lists\TasksClass.cs" />
+    <Compile Include="Models\TheoryClass.cs" />
+    <Compile Include="Models\Valid.cs" />
+    <Compile Include="Models\СompetitionClass.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

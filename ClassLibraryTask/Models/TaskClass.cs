@@ -103,7 +103,6 @@ namespace ClassLibraryTask
         public double GetDayToDeadline()
         {
             DateTime today = DateTime.Today;
-           // var daysLeft = Deadline - today;
             return (Deadline - today).TotalDays;
         }
 

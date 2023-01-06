@@ -8,9 +8,9 @@ namespace ClassLibraryTask
 {
      class LaboratoryProjectClass : DodTask
     {
-        int Max_mark_for_task = 120;
-        float Current_mark_for_task;
-        int id;
+        private int Max_mark_for_task = 120;
+        private float Current_mark_for_task;
+        private int id;
 
         public int ID { get => id; set => id = value; }
 
@@ -26,15 +26,28 @@ namespace ClassLibraryTask
             set { Current_mark_for_task = value * 100 - 10; }
         }
 
+        LaboratoryProjectClass() { }
+        public LaboratoryProjectClass(int curr) { MAX_MARK = curr; }
+        LaboratoryProjectClass(int curr, int max_mark) { Current_mark = curr; MAX_MARK = max_mark; }
+
         static bool print_res(int n)
         {
             Predicate<int> isPassingScore = (int x) => x > 50;
             return isPassingScore(n);
         }
 
-        Action<int> printActionDel = delegate (int i)
+        public Action<int> printActionDel = delegate (int i)
         {
-            Console.WriteLine(print_res(i));
+            bool ispass = print_res(i);
+            if (ispass)
+            {
+                Console.WriteLine("Passed");
+            }
+            else
+            {
+                Console.WriteLine("Did not pass");
+            }
+            
         };
 
         public override void GetResult()

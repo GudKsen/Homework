@@ -34,6 +34,7 @@ namespace HomeworkConsolePrint
                 "5 - demonstration of the behavior of objects\n" +
                 "6 - check if task actual\n" +
                 "7 - sort all tasks by name\n" +
+                "8 - go to menu for additional tasks\n" +
                 "0 - exit\n");
 
             Console.Write("Option: ");
@@ -76,15 +77,21 @@ namespace HomeworkConsolePrint
                 case 4:
                     m.EnterDataForDelete();
                     break;
+
                 case 5:
                     m.DemDataMeth();
                     break;
+
                 case 6:
                     m.PrintIsTaskActual();
                     break;
 
                 case 7:
                     m.Sort_Tasks();
+                    break;
+
+                case 8:
+
                     break;
 
                 case 0:
@@ -95,6 +102,28 @@ namespace HomeworkConsolePrint
             }
 
             return true;
+        }
+
+
+        void menu_additional_tasks()
+        {
+            Console.WriteLine("1 - add laboratory work\n" +
+                "2 - delete laboratory work\n" +
+                "3 - find laboratory work\n" +
+                "4 - check if you have passed the task" +
+                "click any key to exit\n");
+
+            string? choice = Console.ReadLine();
+
+            if (choice != null)
+            {
+                switch(choice)
+                {
+                    case "1":
+
+                        break;
+                }
+            }
         }
     }
 }

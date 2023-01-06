@@ -97,7 +97,7 @@ namespace ClassLibraryTask
 
         public void CheckIsTaskActual(int id)
         {
-            TaskClass t = tt.Tasks[id];
+            TaskClass t = tt.SearchByID(id);
             t.checkDate();
         }
 
@@ -114,7 +114,8 @@ namespace ClassLibraryTask
             }
             else
             {
-                
+                LaboratoryProjectClass t = arr.Find(i);
+                t.printActionDel(100);
             }
         }
 

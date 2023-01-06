@@ -34,10 +34,7 @@ namespace ClassLibraryTask
             ProcessCompleted?.Invoke(this, isSuccess);
         }
 
-        protected virtual void OnProcessCompletedCustom(bool isSuccess)
-        {
-            ProcessCompleted?.Invoke(this, isSuccess);
-        }
+       
 
         public void DeleteTaskByID(int id_delete)
         {
@@ -65,19 +62,10 @@ namespace ClassLibraryTask
         {
             var data = new CustomEventArgs();
 
-            //try
-            //{
+            
             TaskClass res_by_id = tasks.Find(x => x.ID == id);
             return res_by_id;
-            //    data.IsSuccess = true;
-            //    data.Message = "Item successfully finded";
-            //    return res_by_id;
-            //} catch (Exception e)
-            //{
-            //    data.IsSuccess = false;
-            //    data.Message = e.Message;
-            //    return null;
-            //}
+           
             
         }
 
