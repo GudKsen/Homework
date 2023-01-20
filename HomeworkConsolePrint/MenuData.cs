@@ -91,6 +91,16 @@ namespace HomeworkConsolePrint
             }
         }
 
+        public void Convert_To_Xml()
+        {
+            MenuOption.ConvertToXML(1);
+        }
+
+        public void Convert_To_Json()
+        {
+            MenuOption.ConvertToJSON(1);
+        }
+
         public void EnterTheory(int id)
         {
             Console.Write("Enter name of book: ");

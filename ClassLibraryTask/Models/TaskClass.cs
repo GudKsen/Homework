@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ClassLibraryTask.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.Remoting.Messaging;
@@ -19,7 +20,7 @@ namespace ClassLibraryTask
             set { name = value; }
         }
 
-        private string Description { get; set; }
+        public string Description { get; set; }
         private TypeTask Type;
 
         public TypeTask type
@@ -29,6 +30,8 @@ namespace ClassLibraryTask
         }
 
         private DateTime Deadline;
+
+        // My delegate -------------------------------------------------------------
 
         public delegate void MyDelegate(string msg); // declare a delegate
         public void checkDate() {
@@ -40,7 +43,7 @@ namespace ClassLibraryTask
                 del("Vse, zapiznyvsya");
             }
         }
-
+        // -------------------------------------------------------------------------
 
         public TaskClass() { }
         public TaskClass(string namet, string description, string type, DateTime deadline)

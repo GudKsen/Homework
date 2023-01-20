@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ClassLibraryTask
 {
-    class CustomEventArgs : EventArgs
+    public class CustomEventArgs : EventArgs
     {
         public bool IsSuccess { get; set; }
         public string Message { get; set; }

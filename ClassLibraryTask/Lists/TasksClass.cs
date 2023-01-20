@@ -7,11 +7,11 @@ using System.Xml.Linq;
 
 namespace ClassLibraryTask
 {
-    internal class TasksClass<T> where T : TaskClass
+    public class TasksClass<T> where T : TaskClass
     {
         private List<T> tasks = new List<T>();
 
-        public List<T> Tasks { get { return tasks; } set { } }
+        public List<T> Tasks { get { return tasks; } set { tasks = value; } }
 
         public event EventHandler<bool> ProcessCompleted;
 

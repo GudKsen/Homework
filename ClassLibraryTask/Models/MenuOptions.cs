@@ -1,5 +1,9 @@
-﻿using System;
+﻿using ClassLibrary;
+using ClassLibraryTask;
+using ClassLibraryTask.Models;
+using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -18,7 +22,7 @@ namespace ClassLibraryTask
         public int AddingOption(string name, string description, string type, DateTime date)
         {
             TaskClass t = new TaskClass(name, description, type, date);
-            
+            tt.ProcessCompleted += bl_ProcessCompleted;
             tt.AddTask(t);
             return t.ID;
         }
@@ -77,6 +81,17 @@ namespace ClassLibraryTask
             return null;
         }
 
+        public static void bl_ProcessCompleted(object sender, bool IsSuccessful)
+        {
+            Console.WriteLine("Process " + (IsSuccessful ? "Completed Successfully" : "failed"));
+        }
+
+
+        public static void bl_ProcessCompleted_MyDelegate(object sender, CustomEventArgs e)
+        {
+            Console.WriteLine("Process " + (e.IsSuccess ? "Completed Successfully" : "failed"));
+           
+        }
 
 
         public void ShowingOption()
@@ -101,9 +116,73 @@ namespace ClassLibraryTask
             t.checkDate();
         }
 
+
         public void Sort_Tasks_By_Name()
         {
             tt.Tasks.Sort();
+        }
+
+        public void ConvertToXML(int show_option, string path)
+        {
+            //if (show_option == 1)
+            //{
+            //    DisplayTextFile dt = new DisplayTextFile();
+            //    dt.PrintToTextFile(tt);
+            //}
+            //else if (show_option == 2)
+            //{
+            //    DisplayTextFile dt = new DisplayTextFile();
+            //    dt.PrintToTextFile(tt);
+            //}
+
+            string destination = "";
+
+            if (path == "file")
+            {
+                destination = "D:\\Lesson\\hw3.xml";
+            }
+            else if (path == "console")
+            {
+                //destination = Console.Out;
+            }
+
+            Console.WriteLine("Serialize, xml----------------------------------------------");
+
+            Stream fs = new FileStream(destination, FileMode.Create);
+            Serialize<List<TaskClass>> s = new Serialize<List<TaskClass>>();
+
+            s.SerializeXML(Console.Out, tt.Tasks);
+
+            Console.WriteLine("------------------------------------------------------------\n");
+        }
+
+        public void ConvertToJSON(int show_option)
+        {
+            //if (show_option == 1)
+            //{
+            //    DisplayConsole dc = new DisplayConsole();
+            //    dc.PrintToCnsole(tt);
+            //}
+            //else if (show_option == 2)
+            //{
+            //    DisplayConsole dc = new DisplayConsole();
+            //    dc.PrintToCnsole(tt);
+            //}
+
+
+        }
+
+        public void ConvertFromXML()
+        {
+            TasksClass<TaskClass> arr = new TasksClass<TaskClass>();
+            Serialize<List<TaskClass>> s = new Serialize<List<TaskClass>>();
+            string str = File.ReadAllText("D:\\Lesson\\hw3.xml");
+            arr.Tasks = s.DeserializeXML(str);
+        }
+
+        public void ConvertFromJSON()
+        {
+
         }
 
         public void CheckIsPass(int i)
@@ -118,8 +197,6 @@ namespace ClassLibraryTask
                 t.printActionDel(100);
             }
         }
-
-
 
 
     }

@@ -36,7 +36,9 @@ namespace HomeworkConsolePrint
                 "5 - demonstration of the behavior of objects\n" +
                 "6 - check if task actual\n" +
                 "7 - sort all tasks by name\n" +
-                "8 - go to menu for additional tasks\n" +
+                "8 - convert data to XML\n" +
+                "9 - convert data to JSON\n" +
+                "10 - go to menu for additional tasks\n" +
                 "0 - exit\n");
 
             Console.Write("Option: ");
@@ -93,6 +95,14 @@ namespace HomeworkConsolePrint
                     break;
 
                 case 8:
+                    m.Convert_To_Xml();
+                    break;
+
+                case 9:
+                    m.Convert_To_Json();
+                    break;
+
+                case 10:
                     menu_additional_tasks();
                     break;
 
