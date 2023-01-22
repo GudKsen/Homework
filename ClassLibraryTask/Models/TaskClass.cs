@@ -49,7 +49,7 @@ namespace ClassLibraryTask
         public TaskClass(string namet, string description, string type, DateTime deadline)
         {
             Random rnd = new Random();
-            ID = rnd.Next();
+            ID = rnd.Next(100);
             name = namet;
             Description = description;
             switch (type)

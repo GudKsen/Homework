@@ -1,26 +1,25 @@
 ﻿using System;
+using System.Linq;
 using ClassLibraryTask;
 using ClassLibraryTask.Models;
 
 namespace ClassLibrary
 {
-    internal class DisplayConsole : IDisplay
+    public class DisplayConsole<T> : IDisplay
     {
-
-        Serialize<TaskClass> s = new Serialize<TaskClass>();
-        public void PrintToCnsole(TasksClass<TaskClass> tasks)
+        public void PrintToConsole(T tasks)
         {
-            for (int i = 0; i < tasks.Tasks.Count; i++)
+            var enumerable = tasks as System.Collections.IEnumerable;
+            if (enumerable != null && !(tasks is string))
             {
-                Console.WriteLine("Serialize, json--------------------------------------------------");
-                string jsonString = s.SerializeJSON(tasks.Tasks[i]);
-                Console.WriteLine(jsonString);
-                Console.WriteLine("-----------------------------------------------------------------\n");
-
-                Console.WriteLine("Deserialize, json------------------------------------------------");
-                var weatherForecast = s.DeserializeJSON(jsonString);
-                Console.WriteLine(weatherForecast);
-                Console.WriteLine("-----------------------------------------------------------------\n");
+                foreach (var item in enumerable)
+                {
+                    Console.WriteLine(item);
+                }
+            }
+            else
+            {
+                Console.WriteLine(tasks);
             }
         }
     }

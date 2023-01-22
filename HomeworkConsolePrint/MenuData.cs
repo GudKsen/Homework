@@ -5,6 +5,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using ValidationData;
+using ClassLibraryTask.Models;
+using ClassLibrary;
 
 namespace HomeworkConsolePrint
 {
@@ -93,12 +95,66 @@ namespace HomeworkConsolePrint
 
         public void Convert_To_Xml()
         {
-            MenuOption.ConvertToXML(1);
+            Console.Write("Enter how to present information(file or console): ");
+            string? type = Console.ReadLine();
+
+            MenuOption.ConvertToXML(type);
         }
 
         public void Convert_To_Json()
         {
-            MenuOption.ConvertToJSON(1);
+            string jsonstr = MenuOption.ConvertToJSON();
+            Console.Write("Enter how to present information(file or console): ");
+            string? type = Console.ReadLine();
+
+            if (type == "file")
+            {
+                DisplayTextFile<string> dt = new DisplayTextFile<string>();
+                dt.PrintToTextFile(jsonstr);
+            }
+            else if (type == "console")
+            {
+                DisplayConsole<string> dc = new DisplayConsole<string>();
+                dc.PrintToConsole(jsonstr);
+            }
+        }
+
+        public void ConvertFromXml ()
+        {
+            var t = MenuOption.ConvertFromXML();
+            Console.Write("Enter how to present information(file or console): ");
+            string? type = Console.ReadLine();
+
+            if (type == "file")
+            {
+                DisplayTextFile<List<TaskClass>> dt = new DisplayTextFile<List<TaskClass>>();
+                dt.PrintToTextFile(t.Tasks);
+            }
+            else if (type == "console")
+            {
+                DisplayConsole<List<TaskClass>> dc = new DisplayConsole<List<TaskClass>>();
+                dc.PrintToConsole(t.Tasks);
+            }
+        }
+
+        public void ConvertFromJson ()
+        {
+            Console.Write("Enter json-string for converting: ");
+            string str = Console.ReadLine();
+            var t = MenuOption.ConvertFromJSON(str);
+            Console.Write("Enter how to present information(file or console): ");
+            string? type = Console.ReadLine();
+
+            if (type == "file")
+            {
+                DisplayTextFile<List<TaskClass>> dt = new DisplayTextFile<List<TaskClass>>();
+                dt.PrintToTextFile(t);
+            }
+            else if (type == "console")
+            {
+                DisplayConsole<List<TaskClass>> dc = new DisplayConsole<List<TaskClass>>();
+                dc.PrintToConsole(t);
+            }
         }
 
         public void EnterTheory(int id)

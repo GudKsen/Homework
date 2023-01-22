@@ -24,7 +24,7 @@ namespace ClassLibraryTask.Models
 
         public void SerializeXML(Stream fs, T obj)
         {
-            XmlSerializer xmlSerializer = new XmlSerializer(typeof(List<T>));
+            XmlSerializer xmlSerializer = new XmlSerializer(typeof(T));
             //XmlWriter xmlWriter = new XmlTextWriter(fs, Encoding.UTF8);
             XmlWriter xmlWriter = XmlWriter.Create(fs);
             
@@ -36,7 +36,7 @@ namespace ClassLibraryTask.Models
         {
             using (TextReader reader = new StringReader(str))
             {
-                XmlSerializer xmlSerializer = new XmlSerializer(typeof(List<T>));
+                XmlSerializer xmlSerializer = new XmlSerializer(typeof(T));
                 return (T)xmlSerializer.Deserialize(reader);
             }
         }

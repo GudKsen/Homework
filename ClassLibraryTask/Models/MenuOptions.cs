@@ -96,7 +96,7 @@ namespace ClassLibraryTask
 
         public void ShowingOption()
         {
-            
+            tt.Tasks.OrderBy(task => task.ID);
             for (int i = 0; i < tt.Tasks.Count; i++)
             {
                 Console.WriteLine(tt.Tasks[i]);
@@ -122,67 +122,48 @@ namespace ClassLibraryTask
             tt.Tasks.Sort();
         }
 
-        public void ConvertToXML(int show_option, string path)
+        public void ConvertToXML(string path)
         {
-            //if (show_option == 1)
-            //{
-            //    DisplayTextFile dt = new DisplayTextFile();
-            //    dt.PrintToTextFile(tt);
-            //}
-            //else if (show_option == 2)
-            //{
-            //    DisplayTextFile dt = new DisplayTextFile();
-            //    dt.PrintToTextFile(tt);
-            //}
-
-            string destination = "";
-
+            Stream fs = null;
             if (path == "file")
             {
-                destination = "D:\\Lesson\\hw3.xml";
+                string destination = "D:\\Lesson\\hw3.xml";
+                fs = new FileStream(destination, FileMode.Create);
             }
             else if (path == "console")
             {
-                //destination = Console.Out;
+                fs = Console.OpenStandardOutput();
             }
 
             Console.WriteLine("Serialize, xml----------------------------------------------");
-
-            Stream fs = new FileStream(destination, FileMode.Create);
+            
             Serialize<List<TaskClass>> s = new Serialize<List<TaskClass>>();
 
-            s.SerializeXML(Console.Out, tt.Tasks);
-
+            s.SerializeXML(fs, tt.Tasks);
+            fs.Close();
             Console.WriteLine("------------------------------------------------------------\n");
         }
 
-        public void ConvertToJSON(int show_option)
+        public string ConvertToJSON()
         {
-            //if (show_option == 1)
-            //{
-            //    DisplayConsole dc = new DisplayConsole();
-            //    dc.PrintToCnsole(tt);
-            //}
-            //else if (show_option == 2)
-            //{
-            //    DisplayConsole dc = new DisplayConsole();
-            //    dc.PrintToCnsole(tt);
-            //}
-
-
+            Serialize<List<TaskClass>> s = new Serialize<List<TaskClass>>();
+            string str = s.SerializeJSON(tt.Tasks);
+            return str;
         }
 
-        public void ConvertFromXML()
+        public TasksClass<TaskClass> ConvertFromXML()
         {
             TasksClass<TaskClass> arr = new TasksClass<TaskClass>();
             Serialize<List<TaskClass>> s = new Serialize<List<TaskClass>>();
             string str = File.ReadAllText("D:\\Lesson\\hw3.xml");
             arr.Tasks = s.DeserializeXML(str);
+            return arr;
         }
 
-        public void ConvertFromJSON()
+        public List<TaskClass> ConvertFromJSON(string str)
         {
-
+            Serialize<List<TaskClass>> s = new Serialize<List<TaskClass>>();
+            return s.DeserializeJSON(str);
         }
 
         public void CheckIsPass(int i)

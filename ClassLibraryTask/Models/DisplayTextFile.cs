@@ -13,33 +13,31 @@ using ClassLibraryTask.Models;
 
 namespace ClassLibrary
 {
-    internal class DisplayTextFile : IDisplay
+    public class DisplayTextFile<T> : IDisplay
     {
-        public void PrintToTextFile(TasksClass<TaskClass> tasks)
+        public void PrintToTextFile(T variable)
         {
-            //Console.WriteLine("Serialize, xml----------------------------------------------");
-            
-            //Stream fs = new FileStream("D:\\Lesson\\hw3.xml", FileMode.Create);
-            //Serialize<List<TaskClass>> s = new Serialize<List<TaskClass>>();
-
-            //s.SerializeXML(fs, tasks.Tasks);
-
-            //Console.WriteLine("------------------------------------------------------------\n");
-
-
-
-            Console.WriteLine("Deserialize, xml--------------------------------------------");
-            
+            var enumerable = variable as System.Collections.IEnumerable;
 
             using (StreamWriter writetext = new StreamWriter("D:\\Lesson\\hw3.txt"))
             {
-                for (int i = 0; i < arr.Tasks.Count; i++)
+                if (enumerable != null)
                 {
-                    writetext.WriteLine(arr.Tasks[i].ToString());
+                    foreach (var item in enumerable)
+                    {
+                        writetext.WriteLine(item);
+                    }
                 }
-            }
+                else
+                {
+                    writetext.WriteLine(variable);
+                }
 
-            Console.WriteLine("------------------------------------------------------------\n");
+                //for (int i = 0; i < arr.Tasks.Count; i++)
+                //{
+                //    writetext.WriteLine(arr.Tasks[i].ToString());
+                //}
+            }
         }
     }
 }
