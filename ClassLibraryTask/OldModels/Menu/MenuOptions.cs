@@ -1,30 +1,31 @@
-﻿using ClassLibrary;
-using ClassLibraryTask;
-using ClassLibraryTask.Models;
+﻿using ClassLibraryTask.Models;
+using Spectre.Console;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Xml.Linq;
 using Theory;
 
 namespace ClassLibraryTask
 {
-    public class MenuOptions
+    public abstract class MenuOptions
     {
-        private TasksClass<TaskClass> tt = new TasksClass<TaskClass>();
+        public  TasksClass<TaskClass> tt { get; set; }
+        //private TasksClass<TaskClass> tt = new TasksClass<TaskClass>();
         private TasksClass<TheoryClass> thh = new TasksClass<TheoryClass>();
 
-        private ListOfAddTask<LaboratoryProjectClass> arr = new ListOfAddTask<LaboratoryProjectClass>();
-
-        public int AddingOption(string name, string description, string type, DateTime date)
+        public MenuOptions() 
         {
-            TaskClass t = new TaskClass(name, description, type, date);
-            tt.ProcessCompleted += bl_ProcessCompleted;
+            tt = new TasksClass<TaskClass> ();
+        }
+        
+        public virtual void AddTaskOption(string name, string description, string type, DateTime date)
+        {
+            TypeTask obj = TypeTask.None;
+            TaskClass t = new TaskClass(name, description, obj, date);
+            //tt.ProcessCompleted += bl_ProcessCompleted;
             tt.AddTask(t);
-            return t.ID;
+            //return t;
         }
 
         public void AddingTheory(int id, string NameOfBook, int NumberOfWords, int NumberOfPage)
@@ -58,11 +59,10 @@ namespace ClassLibraryTask
         {
             foreach (TaskClass task in tt.Tasks)
             {
-                string str = task.GetDaysLeft;
+                string str = "not implemented";
                 Console.WriteLine(str);
             }
         }
-
 
 
         public TaskClass SearchingOption(string field, string search_field)
@@ -97,23 +97,32 @@ namespace ClassLibraryTask
         public void ShowingOption()
         {
             tt.Tasks.OrderBy(task => task.ID);
+            var table = new Table();
+            table.AddColumn("ID");
+            table.AddColumn("Name");
+            table.AddColumn("Description");
+            table.AddColumn("Deadline");
+            table.AddColumn("Type");
             for (int i = 0; i < tt.Tasks.Count; i++)
             {
-                Console.WriteLine(tt.Tasks[i]);
-                if (tt.Tasks[i].type == TypeTask.Theory)
-                {
-                    Console.Write("\t");
-                    Console.WriteLine(thh.Tasks.Find(x => x.ID == tt.Tasks[i].ID));
-                }
+                table.AddRow(tt.Tasks[i].ID.ToString(), tt.Tasks[i].Name.ToString(), tt.Tasks[i].Description.ToString(), tt.Tasks[i].Deadline.ToString(), tt.Tasks[i].Type.ToString());
+                
+                //Console.WriteLine(tt.Tasks[i]);
+                //if (tt.Tasks[i].type == TypeTask.Theory)
+                //{
+                //    Console.Write("\t");
+                //    Console.WriteLine(thh.Tasks.Find(x => x.ID == tt.Tasks[i].ID));
+                //}
             }
+            AnsiConsole.Write(table);
         }
 
 
 
         public void CheckIsTaskActual(int id)
         {
-            TaskClass t = tt.SearchByID(id);
-            t.checkDate();
+            //TaskClass t = tt.SearchByID(id);
+            //t.CheckDate();
         }
 
 
@@ -135,13 +144,10 @@ namespace ClassLibraryTask
                 fs = Console.OpenStandardOutput();
             }
 
-            Console.WriteLine("Serialize, xml----------------------------------------------");
-            
             Serialize<List<TaskClass>> s = new Serialize<List<TaskClass>>();
 
             s.SerializeXML(fs, tt.Tasks);
             fs.Close();
-            Console.WriteLine("------------------------------------------------------------\n");
         }
 
         public string ConvertToJSON()
@@ -168,15 +174,15 @@ namespace ClassLibraryTask
 
         public void CheckIsPass(int i)
         {
-            if (arr.Addition_tasks.Count == 0)
-            {
-                Console.WriteLine("There are no works");
-            }
-            else
-            {
-                LaboratoryProjectClass t = arr.Find(i);
-                t.printActionDel(100);
-            }
+            //if (arr.Addition_tasks.Count == 0)
+            //{
+            //    Console.WriteLine("There are no works");
+            //}
+            //else
+            //{
+            //    LaboratoryProjectClass t = arr.Find(i);
+            //    t.printActionDel(100);
+            //}
         }
 
 

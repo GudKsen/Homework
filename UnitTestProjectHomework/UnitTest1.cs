@@ -16,8 +16,8 @@ namespace UnitTestProjectHomework
             DateTime.TryParse(date_str, out date);
             List<TaskClass> tasks = new List<TaskClass>();
             List<TaskClass> resultList = new List<TaskClass>();
-            resultList.Add(new TaskClass("java", "system println", "none", date));
-            var class1 = new TaskClass("java", "system println", "none", date);
+            resultList.Add(new TaskClass("java", "system println", TypeTask.None, date));
+            var class1 = new TaskClass("java", "system println", TypeTask.None, date);
             bool res = true;
             bool res2 = true;
 
@@ -49,13 +49,13 @@ namespace UnitTestProjectHomework
             DateTime date;
             DateTime.TryParse(date_str, out date);
             List<TaskClass> arr = new List<TaskClass>();
-            TaskClass OneTask = new TaskClass("name", "descr", "none", date);
+            TaskClass OneTask = new TaskClass("name", "descr", TypeTask.None, date);
             int Result_Index = 1;
             int Test_Index = -1;
 
-            arr.Add(new TaskClass("name123", "descr", "none", date));
-            arr.Add(new TaskClass("name", "descr", "none", date));
-            arr.Add(new TaskClass("name222", "descrfghjkl", "none", date));
+            arr.Add(new TaskClass("name123", "descr", TypeTask.None, date));
+            arr.Add(new TaskClass("name", "descr", TypeTask.None, date));
+            arr.Add(new TaskClass("name222", "descrfghjkl", TypeTask.None, date));
 
             for (int i = 0; i < arr.Count; i++)
             {
@@ -80,18 +80,18 @@ namespace UnitTestProjectHomework
             DateTime.TryParse(date_str, out date);
             List<TaskClass> arr = new List<TaskClass>();
             List<TaskClass> arrRes = new List<TaskClass>();
-            TaskClass OneTask = new TaskClass("name", "descr", "none", date);
+            TaskClass OneTask = new TaskClass("name", "descr", TypeTask.None, date);
             bool IsEq = true;
             bool IsEqRes = true;
 
-            arr.Add(new TaskClass("name123", "descr", "none", date));
-            arr.Add(new TaskClass("name", "descr", "none", date));
-            arr.Add(new TaskClass("name222", "descrfghjkl", "none", date));
+            arr.Add(new TaskClass("name123", "descr", TypeTask.None, date));
+            arr.Add(new TaskClass("name", "descr", TypeTask.None, date));
+            arr.Add(new TaskClass("name222", "descrfghjkl", TypeTask.None, date));
 
-            arrRes.Add(new TaskClass("name123", "descr", "none", date));
-            arrRes.Add(new TaskClass("name", "descr", "none", date));
+            arrRes.Add(new TaskClass("name123", "descr", TypeTask.None, date));
+            arrRes.Add(new TaskClass("name", "descr", TypeTask.None, date));
 
-            arr.Remove(new TaskClass("name222", "descrfghjkl", "none", date));
+            arr.Remove(new TaskClass("name222", "descrfghjkl", TypeTask.None, date));
 
             for (int i = 0; i < arrRes.Count; i++)
             {

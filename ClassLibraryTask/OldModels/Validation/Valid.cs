@@ -10,16 +10,16 @@ namespace ValidationData
     {
         public static bool IsValidString(string str)
         {
-            if (str == null)
-            {
-                Console.WriteLine("Invalid input: String is empty.\n");
-                return false;
-            }
-            else if (str.Length < 3 || str.Length > 255)
-            {
-                Console.WriteLine("Invalid input: string can be more than three characters and less than 255.\n");
-                return false;
-            }
+            //if (str == null)
+            //{
+            //    Console.WriteLine("Invalid input: String is empty.\n");
+            //    return false;
+            //}
+            //else if (str.Length < 3 || str.Length > 255)
+            //{
+            //    Console.WriteLine("Invalid input: string can be more than three characters and less than 255.\n");
+            //    return false;
+            //}
             return true;
         }
 

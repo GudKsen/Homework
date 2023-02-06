@@ -7,13 +7,14 @@ using System.Threading.Tasks;
 using ValidationData;
 using ClassLibraryTask.Models;
 using ClassLibrary;
+using ClassLibraryTask.OldModels.Menu;
 
-namespace HomeworkConsolePrint
+namespace HomeworkConsolePrint.ReadConsole
 {
-    internal class MenuData
+    internal class EnterDataTasks
     {
 
-        private MenuOptions MenuOption = new MenuOptions();
+        private MenuOptionsPlannerTasks MenuOption = new();
         public void EnterDataAdd()
         {
             bool IsValid = false;
@@ -30,7 +31,7 @@ namespace HomeworkConsolePrint
                     name = Console.ReadLine();
                 }
             }
-
+            Console.Write("\n");
 
             Console.Write("Enter description: ");
             string? description = Console.ReadLine();
@@ -45,6 +46,7 @@ namespace HomeworkConsolePrint
                     description = Console.ReadLine();
                 }
             }
+            Console.Write("\n");
 
             Console.Write("Enter deadline: ");
             DateTime date;
@@ -60,7 +62,7 @@ namespace HomeworkConsolePrint
                     DateTime.TryParse(Console.ReadLine(), out date);
                 }
             }
-
+            Console.Write("\n");
 
             Console.Write("Enter type of homework (none, theory, practice, additional): ");
             string? type = Console.ReadLine();
@@ -75,21 +77,22 @@ namespace HomeworkConsolePrint
                     type = Console.ReadLine();
                 }
             }
+            Console.Write("\n");
 
-            if (type == "theory") 
+            if (type == "theory")
             {
                 Console.Write("Do you want add theory information? (y, n): ");
                 string? answer = Console.ReadLine();
 
                 if (answer == "y")
                 {
-                    int id = MenuOption.AddingOption(name, description, type, date);
-                    EnterTheory(id);
+                    //var id = MenuOption.AddTaskOption(name, description, type, date);
+                    //EnterTheory(id);
                 }
-            } 
+            }
             else
             {
-                MenuOption.AddingOption(name, description, type, date);
+                MenuOption.AddTaskOption(name, description, type, date);
             }
         }
 
@@ -119,7 +122,7 @@ namespace HomeworkConsolePrint
             }
         }
 
-        public void ConvertFromXml ()
+        public void ConvertFromXml()
         {
             var t = MenuOption.ConvertFromXML();
             Console.Write("Enter how to present information(file or console): ");
@@ -137,7 +140,7 @@ namespace HomeworkConsolePrint
             }
         }
 
-        public void ConvertFromJson ()
+        public void ConvertFromJson()
         {
             Console.Write("Enter json-string for converting: ");
             string str = Console.ReadLine();
@@ -219,10 +222,8 @@ namespace HomeworkConsolePrint
                 Console.Write("Enter id for deleting object: ");
 
                 string? id_delete = Console.ReadLine();
-                
-                MenuOption.DeletingOption(delete_option, id_delete);
 
-                Console.WriteLine("Deleted");
+                MenuOption.DeletingOption(delete_option, id_delete);
             }
             else if (delete_option == "2")
             {
@@ -231,8 +232,6 @@ namespace HomeworkConsolePrint
                 string? name_delete = Console.ReadLine();
 
                 MenuOption.DeletingOption(delete_option, name_delete);
-
-                Console.WriteLine("Deleted");
             }
             else
             {

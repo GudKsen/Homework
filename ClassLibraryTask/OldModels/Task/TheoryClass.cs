@@ -15,9 +15,9 @@ namespace Theory
         //private int _id;
 
         //public int ID { get { return _id; } }
-        private string book { get; set; }
-        private int page { get; set; }
-        private int number_of_words { get; set; }
+        //public string Book { get; set; }
+        //public int Page { get; set; }
+        //public int Number_of_words { get; set; }
 
         //void TheoryClassC(int id, string name, string book, int page, int number_of_words)
         //{
@@ -28,18 +28,13 @@ namespace Theory
         //    this.number_of_words = number_of_words;
         //}
 
-        public string Book { get { return book; } set { book = value; } }
-        public int Page { get { return page; } set { page = value; } }
-        public int NumberOfWords { get { return number_of_words; }
-            set
-            {
-                number_of_words = value;
-            }
-        }
+        public string Book { get;  set;  }
+        public int Page { get; set; }
+        public int NumberOfWords { get; set;}
 
         public override string ToString()
         {
-            return "Book name: " + book + " Page: " + page + " Number of words: " + NumberOfWords + "\n";
+            return "Book name: " + Book + " Page: " + Page + " Number of words: " + NumberOfWords + "\n";
         }
     }
 }
