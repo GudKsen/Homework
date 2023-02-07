@@ -1,20 +1,14 @@
 ﻿using ClassLibraryTask;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using ValidationData;
-using ClassLibraryTask.Models;
 using ClassLibrary;
-using ClassLibraryTask.OldModels.Menu;
+using HomeworkConsolePrint.Service;
+using Spectre.Console;
 
 namespace HomeworkConsolePrint.ReadConsole
 {
     internal class EnterDataTasks
     {
-
-        private MenuOptionsPlannerTasks MenuOption = new();
+        ServiceTasks service = new ServiceTasks();
         public void EnterDataAdd()
         {
             bool IsValid = false;
@@ -79,6 +73,8 @@ namespace HomeworkConsolePrint.ReadConsole
             }
             Console.Write("\n");
 
+
+
             if (type == "theory")
             {
                 Console.Write("Do you want add theory information? (y, n): ");
@@ -92,7 +88,7 @@ namespace HomeworkConsolePrint.ReadConsole
             }
             else
             {
-                MenuOption.AddTaskOption(name, description, type, date);
+                service.AddTask(name, description, type, date);
             }
         }
 
@@ -101,63 +97,63 @@ namespace HomeworkConsolePrint.ReadConsole
             Console.Write("Enter how to present information(file or console): ");
             string? type = Console.ReadLine();
 
-            MenuOption.ConvertToXML(type);
+            //MenuOption.ConvertToXML(type);
         }
 
         public void Convert_To_Json()
         {
-            string jsonstr = MenuOption.ConvertToJSON();
-            Console.Write("Enter how to present information(file or console): ");
-            string? type = Console.ReadLine();
+            //string jsonstr = MenuOption.ConvertToJSON();
+            //Console.Write("Enter how to present information(file or console): ");
+            //string? type = Console.ReadLine();
 
-            if (type == "file")
-            {
-                DisplayTextFile<string> dt = new DisplayTextFile<string>();
-                dt.PrintToTextFile(jsonstr);
-            }
-            else if (type == "console")
-            {
-                DisplayConsole<string> dc = new DisplayConsole<string>();
-                dc.PrintToConsole(jsonstr);
-            }
+            //if (type == "file")
+            //{
+            //    DisplayTextFile<string> dt = new DisplayTextFile<string>();
+            //    dt.PrintToTextFile(jsonstr);
+            //}
+            //else if (type == "console")
+            //{
+            //    DisplayConsole<string> dc = new DisplayConsole<string>();
+            //    dc.PrintToConsole(jsonstr);
+            //}
         }
 
         public void ConvertFromXml()
         {
-            var t = MenuOption.ConvertFromXML();
-            Console.Write("Enter how to present information(file or console): ");
-            string? type = Console.ReadLine();
+            //var t = MenuOption.ConvertFromXML();
+            //Console.Write("Enter how to present information(file or console): ");
+            //string? type = Console.ReadLine();
 
-            if (type == "file")
-            {
-                DisplayTextFile<List<TaskClass>> dt = new DisplayTextFile<List<TaskClass>>();
-                dt.PrintToTextFile(t.Tasks);
-            }
-            else if (type == "console")
-            {
-                DisplayConsole<List<TaskClass>> dc = new DisplayConsole<List<TaskClass>>();
-                dc.PrintToConsole(t.Tasks);
-            }
+            //if (type == "file")
+            //{
+            //    DisplayTextFile<List<TaskClass>> dt = new DisplayTextFile<List<TaskClass>>();
+            //    dt.PrintToTextFile(t.Tasks);
+            //}
+            //else if (type == "console")
+            //{
+            //    DisplayConsole<List<TaskClass>> dc = new DisplayConsole<List<TaskClass>>();
+            //    dc.PrintToConsole(t.Tasks);
+            //}
         }
 
         public void ConvertFromJson()
         {
-            Console.Write("Enter json-string for converting: ");
-            string str = Console.ReadLine();
-            var t = MenuOption.ConvertFromJSON(str);
-            Console.Write("Enter how to present information(file or console): ");
-            string? type = Console.ReadLine();
+            //    Console.Write("Enter json-string for converting: ");
+            //    string str = Console.ReadLine();
+            //    var t = MenuOption.ConvertFromJSON(str);
+            //    Console.Write("Enter how to present information(file or console): ");
+            //    string? type = Console.ReadLine();
 
-            if (type == "file")
-            {
-                DisplayTextFile<List<TaskClass>> dt = new DisplayTextFile<List<TaskClass>>();
-                dt.PrintToTextFile(t);
-            }
-            else if (type == "console")
-            {
-                DisplayConsole<List<TaskClass>> dc = new DisplayConsole<List<TaskClass>>();
-                dc.PrintToConsole(t);
-            }
+            //    if (type == "file")
+            //    {
+            //        DisplayTextFile<List<TaskClass>> dt = new DisplayTextFile<List<TaskClass>>();
+            //        dt.PrintToTextFile(t);
+            //    }
+            //    else if (type == "console")
+            //    {
+            //        DisplayConsole<List<TaskClass>> dc = new DisplayConsole<List<TaskClass>>();
+            //        dc.PrintToConsole(t);
+            //    }
         }
 
         public void EnterTheory(int id)
@@ -205,7 +201,7 @@ namespace HomeworkConsolePrint.ReadConsole
             }
 
             //Menu option
-            MenuOption.AddingTheory(id, NameOfBook, NumberOfWords, NumberOfPage);
+            //MenuOption.AddingTheory(id, NameOfBook, NumberOfWords, NumberOfPage);
 
         }
 
@@ -223,15 +219,15 @@ namespace HomeworkConsolePrint.ReadConsole
 
                 string? id_delete = Console.ReadLine();
 
-                MenuOption.DeletingOption(delete_option, id_delete);
+                service.DeleteTaskByID(Int32.Parse(id_delete));
             }
             else if (delete_option == "2")
             {
-                Console.Write("Enter id for deleting object: ");
+                Console.Write("Enter name for deleting object: ");
 
                 string? name_delete = Console.ReadLine();
 
-                MenuOption.DeletingOption(delete_option, name_delete);
+                service.DeleteTaskByName(name_delete);
             }
             else
             {
@@ -257,7 +253,7 @@ namespace HomeworkConsolePrint.ReadConsole
 
                 int id = Convert.ToInt32(Console.ReadLine());
 
-                TaskClass res = MenuOption.SearchingOption(field, id.ToString());
+                TaskClass res = service.SearchTaskByID(Int32.Parse(field));
 
                 Console.WriteLine(res);
             }
@@ -267,7 +263,7 @@ namespace HomeworkConsolePrint.ReadConsole
 
                 string? name = Console.ReadLine();
 
-                TaskClass res = MenuOption.SearchingOption(field, name);
+                TaskClass res = service.SearchTaskByName(name);
 
                 Console.WriteLine(res);
             }
@@ -284,23 +280,38 @@ namespace HomeworkConsolePrint.ReadConsole
         {
             Console.Write("Enter ID of task: ");
             int id = Convert.ToInt32(Console.ReadLine());
-            MenuOption.CheckIsTaskActual(id);
+            
+            //MenuOption.CheckIsTaskActual(id);
         }
 
         public void Sort_Tasks()
         {
-            MenuOption.Sort_Tasks_By_Name();
+            service.SortTasks();
         }
 
 
         public void ShowData()
         {
-            MenuOption.ShowingOption();
+            List<TaskClass> tasks = service.GetTasks();
+            Table table = new Table();
+
+            table.AddColumn("ID");
+            table.AddColumn("Name");
+            table.AddColumn("Description");
+            table.AddColumn("Deadline");
+            table.AddColumn("Type");
+
+            foreach (TaskClass task in tasks)
+            {
+                table.AddRow(task.ID.ToString(), task.Name.ToString(), task.Description.ToString(), task.Deadline.ToString(), task.Type.ToString());
+            }
+
+            AnsiConsole.Write(table);
         }
 
         public void DemDataMeth()
         {
-            MenuOption.DemMethod();
+            //MenuOption.DemMethod();
         }
     }
 }

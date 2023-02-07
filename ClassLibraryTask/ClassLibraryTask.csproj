@@ -77,8 +77,6 @@
     <Compile Include="CustomEventArgs.cs" />
     <Compile Include="OldModels\Enums\EnumTask.cs" />
     <Compile Include="Lists\IRepository.cs" />
-    <Compile Include="OldModels\Menu\MenuOptionsPlanner.cs" />
-    <Compile Include="OldModels\Menu\MenuOptionsPlannerTasks.cs" />
     <Compile Include="OldModels\Planner\HolidayPlanner.cs" />
     <Compile Include="OldModels\Planner\Planner.cs" />
     <Compile Include="OldModels\Planner\UniversityPlanner.cs" />
@@ -86,10 +84,10 @@
     <Compile Include="OldModels\IDisplay\DisplayConsole.cs" />
     <Compile Include="OldModels\IDisplay\DisplayTextFile.cs" />
     <Compile Include="OldModels\IDisplay\IDisplay.cs" />
-    <Compile Include="OldModels\Menu\MenuOptions.cs" />
     <Compile Include="OldModels\Services\NodePlannerTasks.cs" />
     <Compile Include="OldModels\Services\Serialize.cs" />
     <Compile Include="OldModels\Task\TaskClass.cs" />
+    <Compile Include="OldModels\Validation\TypeTaskValidate.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Lists\TasksClass.cs" />
     <Compile Include="OldModels\Task\TheoryClass.cs" />

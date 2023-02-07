@@ -1,18 +1,12 @@
-﻿using ClassLibraryTask;
-using ClassLibraryTask.OldModels.Menu;
-using ClassLibraryTask.OldModels.Planner;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using ClassLibraryTask.OldModels.Planner;
+using HomeworkConsolePrint.Service;
 using ValidationData;
 
 namespace HomeworkConsolePrint.ReadConsole
 {
     internal class EnterDataPlanner
     {
-        public MenuOptionsPlanner optionsPlanner = new MenuOptionsPlanner();
+        public ServicePlanner sp = new ServicePlanner();
         public void CreationData (string type)
         {
             bool IsValid = false;
@@ -48,18 +42,18 @@ namespace HomeworkConsolePrint.ReadConsole
 
             if (type == "university")
             {
-                optionsPlanner.CreatePlanner(new UniversityPlanner(name, description), type);
+                Planner planner = new UniversityPlanner(name, description);
             }
             else
             {
-                optionsPlanner.CreatePlanner(new HolidayPlanner(name, description), type);
+                Planner planner = new HolidayPlanner(name, description);
             }
             
         }
 
         public void PrintingData (string type)
         {
-            optionsPlanner.ReadPlanner(type);
+            
             Console.WriteLine();
         }
 

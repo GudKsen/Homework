@@ -6,11 +6,13 @@ using System.Threading.Tasks;
 
 namespace ClassLibraryTask
 {
-    internal interface IRepository<T>
+    public interface IRepository<T>
     {
         void Add(T task);
-        void Delete(int id);
-        T Find(int id);
-
+        void DeleteByID(int id);
+        void DeleteByName(string name_delete);
+        T SearchByID(int id);
+        T SearchByName(string name_search);
+        List<T> GetAll();
     }
 }

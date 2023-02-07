@@ -6,11 +6,16 @@ using System.Threading.Tasks;
 
 namespace ClassLibraryTask.OldModels
 {
-    internal class CheckTaskRelevance
+    public class CheckTaskRelevance
     {
         public DateTime Deadline { get; set; }
 
         public delegate void MyDelegate(string msg);
+
+        public CheckTaskRelevance(DateTime deadline)
+        {
+            Deadline = deadline;
+        }
 
         public void CheckDate()
         {

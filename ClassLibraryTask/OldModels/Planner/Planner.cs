@@ -9,7 +9,6 @@ namespace ClassLibraryTask.OldModels.Planner
     public abstract class Planner
     {
         public abstract int ID { get; set; }
-       // protected string name;
         public virtual string Name { get; set; }
         public virtual string Description { get; set; }
         public virtual TasksClass<TaskClass> Tasks { get; set; }

@@ -10,7 +10,7 @@ using System.Xml.Serialization;
 
 namespace ClassLibraryTask.Models
 {
-    internal class Serialize<T>
+    public class Serialize<T>
     {
         public string SerializeJSON(T obj)
         {
