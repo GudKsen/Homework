@@ -12,6 +12,7 @@ namespace HomeworkConsolePrint.Menu
     {
         //EnterData m = new EnterData();
         EnterDataTasks m = new EnterDataTasks();
+        ConvertMenu cm = new ConvertMenu();
 
         internal void MenuLoop()
         {
@@ -31,7 +32,7 @@ namespace HomeworkConsolePrint.Menu
                .PageSize(10)
                .MoreChoicesText("[grey](Move up and down to reveal more options)[/]")
                .AddChoices(new[] {
-                "Add", "Print", "Find", "Delete", "Sort", "Convert", "Exit"
+                "Add", "Print", "Find", "Delete", "Sort", "Convert", "Group by deadlines", "Exit"
            }));
             //int option;
             
@@ -95,9 +96,13 @@ namespace HomeworkConsolePrint.Menu
                     break;
 
                 case "Convert":
-                    m.Convert_To_Xml();
+                    cm.dataTasks = m;
+                    cm.MenuLoop();
                     break;
 
+                case "Group by deadlines":
+                    m.GrpBy();
+                    break;
                 //case 9:
                 //    m.Convert_To_Json();
                 //    break;

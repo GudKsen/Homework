@@ -1,4 +1,6 @@
-﻿using System;
+﻿using ClassLibraryTask.OldModels;
+using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -60,13 +62,15 @@ namespace ClassLibraryTask
 
         public T SearchByID(int id)
         {
-            var data = new CustomEventArgs();
+            //var data = new CustomEventArgs();
 
+            var task = 
+                from taskClass in tasks
+                where taskClass.ID == id
+                select taskClass;
             
-            TaskClass res_by_id = tasks.Find(x => x.ID == id);
-            return (T)res_by_id;
-           
-            
+            //TaskClass res_by_id = tasks.Find(x => x.ID == id);
+            return (T)task;
         }
 
         public T SearchByName(string name_search)
@@ -75,9 +79,40 @@ namespace ClassLibraryTask
             return (T)res_by_name;
         }
 
+        public void SortByDate()
+        {
+            tasks.OrderBy(el => el.Deadline).ToList();
+        }
+
+        public void GroupByDeadline()
+        {
+            var tt = tasks
+                .Select(task => new { task.Name, task.Deadline, days = new CheckTaskRelevance(task.Deadline).GetDayToDeadline() })
+                .GroupBy(task => task.days)
+                .Select(gr =>
+                {
+                    
+                    Dictionary<double, string> d1 = new Dictionary<double, string>();
+                   
+                    foreach (var item in gr)
+                    {
+                        
+                        Console.WriteLine(item.days.ToString());
+                            d1.Add(item.days, item.Name);
+                        //}
+                    }
+
+                    return d1;
+                });
+
+            string text = "";
+
+           
+        }
+
         public List<T> GetAll()
         {
-            return tasks;
+            return Tasks;
         }
     }
 }

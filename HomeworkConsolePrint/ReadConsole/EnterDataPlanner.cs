@@ -1,4 +1,6 @@
-﻿using ClassLibraryTask.OldModels.Planner;
+﻿using ClassLibraryTask;
+using ClassLibraryTask.OldModels.Planner;
+using ClassLibraryTask.OldModels.Validation;
 using HomeworkConsolePrint.Service;
 using ValidationData;
 
@@ -7,6 +9,7 @@ namespace HomeworkConsolePrint.ReadConsole
     internal class EnterDataPlanner
     {
         public ServicePlanner sp = new ServicePlanner();
+        public ServiceTasks serviceTasks;
         public void CreationData (string type)
         {
             bool IsValid = false;
@@ -40,14 +43,16 @@ namespace HomeworkConsolePrint.ReadConsole
             }
             Console.Write("\n");
 
-            if (type == "university")
-            {
-                Planner planner = new UniversityPlanner(name, description);
-            }
-            else
-            {
-                Planner planner = new HolidayPlanner(name, description);
-            }
+            sp.CreatePlanner(type, name, description);
+
+            //if (type == "university")
+            //{
+            //    Planner planner = new UniversityPlanner(name, description);
+            //}
+            //else
+            //{
+            //    Planner planner = new HolidayPlanner(name, description);
+            //}
             
         }
 
@@ -66,5 +71,17 @@ namespace HomeworkConsolePrint.ReadConsole
         {
 
         }
+
+        public void AddTask()
+        {
+            
+        }
+
+        public void DeleteTaskByID()
+        {
+            
+        }
+
+       
     }
 }

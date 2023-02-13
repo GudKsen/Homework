@@ -1,4 +1,6 @@
-﻿using System;
+﻿using ClassLibraryTask.OldModels.Planner;
+using HomeworkConsolePrint.ReadConsole;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,9 +10,21 @@ namespace HomeworkConsolePrint.Service
 {
     internal class ServicePlanner
     {
-        void CreatePlanner()
+        Planner planner { get; set; }
+        public void CreatePlanner(string type, string name, string description)
         {
-
+            if (type == "holiday")
+            {
+                planner = new HolidayPlanner(name, description);
+                
+            }
+            else
+            {
+                planner = new UniversityPlanner(name, description);
+                
+            }
         }
+
+
     }
 }

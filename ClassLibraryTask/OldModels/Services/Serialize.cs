@@ -17,15 +17,15 @@ namespace ClassLibraryTask.Models
             return JsonSerializer.Serialize(obj);
         }
 
-        public T DeserializeJSON(string json)
+        public  T DeserializeJSON(string json)
         {
             return JsonSerializer.Deserialize<T>(json);
+             
         }
 
         public void SerializeXML(Stream fs, T obj)
         {
             XmlSerializer xmlSerializer = new XmlSerializer(typeof(T));
-            //XmlWriter xmlWriter = new XmlTextWriter(fs, Encoding.UTF8);
             XmlWriter xmlWriter = XmlWriter.Create(fs);
             
             xmlSerializer.Serialize(xmlWriter, obj);
@@ -40,5 +40,15 @@ namespace ClassLibraryTask.Models
                 return (T)xmlSerializer.Deserialize(reader);
             }
         }
+
+        public async void Async(T obj)
+        {
+            using (Stream writer = new FileStream("flightplan.json", FileMode.OpenOrCreate))
+            {
+                await JsonSerializer.SerializeAsync(writer, obj);
+            }
+        }
+
+
     }
 }

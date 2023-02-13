@@ -12,9 +12,9 @@ namespace HomeworkConsolePrint.Service
 {
     internal class ServiceTasks
     {
-        IRepository<TaskClass> repository = new TasksClass<TaskClass>();
+        IRepository<TaskClass> repository { get; set; }
         Serialize<List<TaskClass>> serialize = new Serialize<List<TaskClass>>();
-        
+
 
         public void AddTask(string name, string description, string type, DateTime deadline)
         {
@@ -53,10 +53,11 @@ namespace HomeworkConsolePrint.Service
             tasks.Sort();
         }
 
-        public void TasksToJson()
+        public string TasksToJson()
         {
-            List<TaskClass> tasks = repository.GetAll();
-            Console.WriteLine(serialize.SerializeJSON(tasks));
+            var tasks = GetTasks();
+
+            return serialize.SerializeJSON(tasks);
         }
 
         public List<TaskClass> TasksFromJson(string json)
@@ -76,7 +77,7 @@ namespace HomeworkConsolePrint.Service
                 string destination = "D:\\Lesson\\hw3.xml";
                 Stream fs = new FileStream(destination, FileMode.Create);
                 serialize.SerializeXML(fs, tasks);
-            }            
+            }
         }
 
         public List<TaskClass> TasksFromXml()
@@ -91,5 +92,12 @@ namespace HomeworkConsolePrint.Service
             var task = SearchTaskByID(id);
 
         }
+
+        public void GroupByDeadlines()
+        {
+            repository.GroupByDeadline();
+        }
+
+
     }
 }

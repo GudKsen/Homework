@@ -1,4 +1,6 @@
-﻿using Spectre.Console;
+﻿using HomeworkConsolePrint.ReadConsole;
+using HomeworkConsolePrint.Service;
+using Spectre.Console;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,6 +11,8 @@ namespace HomeworkConsolePrint.Menu
 {
     internal class ConvertMenu
     {
+        ServiceTasks serviceTasks = new ServiceTasks();
+        public EnterDataTasks dataTasks { get; set; }
         internal void MenuLoop()
         {
             bool isLoop;
@@ -32,18 +36,19 @@ namespace HomeworkConsolePrint.Menu
             switch (Option)
             {
                 case "to XML":
-                   
+                    dataTasks.Convert_To_Xml();
                     break;
 
                 case "from XML":
-                    
+                    dataTasks.ConvertFromXml();
                     break;
 
                 case "to JSON":
-                    
+                    dataTasks.Convert_To_Json();
                     break;
 
                 case "from JSON":
+                    dataTasks.ConvertFromJson();
                     break;
 
                 case "Exit":

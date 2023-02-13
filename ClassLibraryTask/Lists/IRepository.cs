@@ -13,6 +13,7 @@ namespace ClassLibraryTask
         void DeleteByName(string name_delete);
         T SearchByID(int id);
         T SearchByName(string name_search);
+        void GroupByDeadline();
         List<T> GetAll();
     }
 }

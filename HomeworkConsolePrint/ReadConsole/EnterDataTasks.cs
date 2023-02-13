@@ -8,7 +8,7 @@ namespace HomeworkConsolePrint.ReadConsole
 {
     internal class EnterDataTasks
     {
-        ServiceTasks service = new ServiceTasks();
+        ServiceTasks service { get; set; }
         public void EnterDataAdd()
         {
             bool IsValid = false;
@@ -96,64 +96,69 @@ namespace HomeworkConsolePrint.ReadConsole
         {
             Console.Write("Enter how to present information(file or console): ");
             string? type = Console.ReadLine();
-
-            //MenuOption.ConvertToXML(type);
+            service.TasksToXml(type);
         }
 
         public void Convert_To_Json()
         {
-            //string jsonstr = MenuOption.ConvertToJSON();
-            //Console.Write("Enter how to present information(file or console): ");
-            //string? type = Console.ReadLine();
+            string jsonstr = service.TasksToJson();
+            Console.Write("Enter how to present information(file or console): ");
+            string? type = Console.ReadLine();
 
-            //if (type == "file")
-            //{
-            //    DisplayTextFile<string> dt = new DisplayTextFile<string>();
-            //    dt.PrintToTextFile(jsonstr);
-            //}
-            //else if (type == "console")
-            //{
-            //    DisplayConsole<string> dc = new DisplayConsole<string>();
-            //    dc.PrintToConsole(jsonstr);
-            //}
+            if (type == "file")
+            {
+                DisplayTextFile<string> dt = new DisplayTextFile<string>();
+                dt.PrintToTextFile(jsonstr);
+            }
+            else if (type == "console")
+            {
+                DisplayConsole<string> dc = new DisplayConsole<string>();
+                dc.PrintToConsole(jsonstr);
+            }
+        }
+
+        public void GrpBy()
+        {
+            service.GroupByDeadlines();
         }
 
         public void ConvertFromXml()
         {
-            //var t = MenuOption.ConvertFromXML();
-            //Console.Write("Enter how to present information(file or console): ");
-            //string? type = Console.ReadLine();
+            var t = service.TasksFromXml();
+            Console.Write("Enter how to present information(file or console): ");
+            string? type = Console.ReadLine();
 
-            //if (type == "file")
-            //{
-            //    DisplayTextFile<List<TaskClass>> dt = new DisplayTextFile<List<TaskClass>>();
-            //    dt.PrintToTextFile(t.Tasks);
-            //}
-            //else if (type == "console")
-            //{
-            //    DisplayConsole<List<TaskClass>> dc = new DisplayConsole<List<TaskClass>>();
-            //    dc.PrintToConsole(t.Tasks);
-            //}
+            if (type == "file")
+            {
+                DisplayTextFile<List<TaskClass>> dt = new DisplayTextFile<List<TaskClass>>();
+                dt.PrintToTextFile(t);
+            }
+            else if (type == "console")
+            {
+                DisplayConsole<List<TaskClass>> dc = new DisplayConsole<List<TaskClass>>();
+                dc.PrintToConsole(t);
+            }
         }
 
         public void ConvertFromJson()
         {
-            //    Console.Write("Enter json-string for converting: ");
-            //    string str = Console.ReadLine();
-            //    var t = MenuOption.ConvertFromJSON(str);
-            //    Console.Write("Enter how to present information(file or console): ");
-            //    string? type = Console.ReadLine();
+            Console.Write("Enter json-string for converting: ");
+            string str = Console.ReadLine();
+            var t = service.TasksFromJson(str);
 
-            //    if (type == "file")
-            //    {
-            //        DisplayTextFile<List<TaskClass>> dt = new DisplayTextFile<List<TaskClass>>();
-            //        dt.PrintToTextFile(t);
-            //    }
-            //    else if (type == "console")
-            //    {
-            //        DisplayConsole<List<TaskClass>> dc = new DisplayConsole<List<TaskClass>>();
-            //        dc.PrintToConsole(t);
-            //    }
+            Console.Write("Enter how to present information(file or console): ");
+            string? type = Console.ReadLine();
+
+            if (type == "file")
+            {
+                DisplayTextFile<List<TaskClass>> dt = new DisplayTextFile<List<TaskClass>>();
+                dt.PrintToTextFile(t);
+            }
+            else if (type == "console")
+            {
+                DisplayConsole<List<TaskClass>> dc = new DisplayConsole<List<TaskClass>>();
+                dc.PrintToConsole(t);
+            }
         }
 
         public void EnterTheory(int id)
